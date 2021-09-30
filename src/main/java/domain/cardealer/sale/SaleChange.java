@@ -2,6 +2,7 @@ package domain.cardealer.sale;
 
 import co.com.sofka.domain.generic.EventChange;
 import domain.cardealer.sale.entities.Car;
+import domain.cardealer.sale.entities.Customer;
 import domain.cardealer.sale.entities.Salesman;
 import domain.cardealer.sale.events.*;
 
@@ -35,6 +36,8 @@ public class SaleChange extends EventChange {
             sale.salesman.updateSalesman(event.getName(), event.getEmail(), event.getAge());
         });
 
-
+        apply((CustomerAdded event) ->{
+            sale.customer = new Customer(event.getCustomerId(), event.getName(), event.getEmail(), event.getAge());
+        });
     }
 }
