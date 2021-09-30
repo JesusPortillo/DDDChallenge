@@ -1,4 +1,4 @@
-package domain.cardealer.sale.usecases;
+package domain.usecases;
 
 import co.com.sofka.business.generic.UseCase;
 import co.com.sofka.business.support.RequestCommand;

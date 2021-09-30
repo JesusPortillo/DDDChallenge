@@ -2,12 +2,13 @@ package domain.cardealer.sale;
 
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
+import domain.cardealer.generics.Age;
+import domain.cardealer.generics.Email;
+import domain.cardealer.generics.Name;
 import domain.cardealer.sale.entities.Car;
 import domain.cardealer.sale.entities.Customer;
 import domain.cardealer.sale.entities.Salesman;
-import domain.cardealer.sale.events.CarAdded;
-import domain.cardealer.sale.events.CarUpdated;
-import domain.cardealer.sale.events.SaleCreated;
+import domain.cardealer.sale.events.*;
 import domain.cardealer.sale.values.*;
 
 import java.util.List;
@@ -57,7 +58,24 @@ public class Sale extends AggregateEvent<SaleId> {
         appendChange(new CarUpdated(saleId, plate, carModel, carPrice, carColor, category)).apply();
     }
 
-    public Car getProductId(Plate plate) {
+    public void addSalesman(SalesmanId salesmanId, Name name, Email email, Age age){
+        Objects.requireNonNull(salesmanId);
+        Objects.requireNonNull(name);
+        Objects.requireNonNull(email);
+        Objects.requireNonNull(age);
+        appendChange(new SalesmanAdded(salesmanId, name, email, age)).apply();
+    }
+
+    public void updateSalesman(SaleId saleId, SalesmanId salesmanId, Name name, Email email, Age age){
+        Objects.requireNonNull(saleId);
+        Objects.requireNonNull(salesmanId);
+        Objects.requireNonNull(name);
+        Objects.requireNonNull(email);
+        Objects.requireNonNull(age);
+        appendChange(new SalesmanUpdated(saleId, salesmanId, name, email, age)).apply();
+    }
+
+    public Car getCarId(Plate plate) {
         Objects.requireNonNull(plate);
         return cars().stream().filter(car -> car.identity().equals(plate)).findFirst().orElseThrow();
     }

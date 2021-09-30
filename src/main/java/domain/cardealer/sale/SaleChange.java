@@ -2,9 +2,8 @@ package domain.cardealer.sale;
 
 import co.com.sofka.domain.generic.EventChange;
 import domain.cardealer.sale.entities.Car;
-import domain.cardealer.sale.events.CarAdded;
-import domain.cardealer.sale.events.CarUpdated;
-import domain.cardealer.sale.events.SaleCreated;
+import domain.cardealer.sale.entities.Salesman;
+import domain.cardealer.sale.events.*;
 
 import java.util.ArrayList;
 
@@ -24,8 +23,16 @@ public class SaleChange extends EventChange {
         });
 
         apply((CarUpdated event)->{
-            sale.getProductId(event.getPlate()).updateCar(event.getCarModel(), event.getCarPrice(),
+            sale.getCarId(event.getPlate()).updateCar(event.getCarModel(), event.getCarPrice(),
                     event.getCarColor(), event.getCategory());
+        });
+
+        apply((SalesmanAdded event) -> {
+            sale.salesman = new Salesman(event.getSalesmanId(), event.getName(), event.getEmail(), event.getAge());
+        });
+
+        apply((SalesmanUpdated event)->{
+            sale.salesman.updateSalesman(event.getName(), event.getEmail(), event.getAge());
         });
 
 
