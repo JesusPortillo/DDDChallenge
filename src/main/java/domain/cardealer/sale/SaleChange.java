@@ -3,6 +3,7 @@ package domain.cardealer.sale;
 import co.com.sofka.domain.generic.EventChange;
 import domain.cardealer.sale.entities.Car;
 import domain.cardealer.sale.events.CarAdded;
+import domain.cardealer.sale.events.CarUpdated;
 import domain.cardealer.sale.events.SaleCreated;
 
 import java.util.ArrayList;
@@ -20,6 +21,11 @@ public class SaleChange extends EventChange {
             sale.cars.add(new Car(event.getPlate(), event.getCarModel(), event.getCarPrice(), event.getCarColor(),
                     event.getCategory()));
 
+        });
+
+        apply((CarUpdated event)->{
+            sale.getProductId(event.getPlate()).updateCar(event.getCarModel(), event.getCarPrice(),
+                    event.getCarColor(), event.getCategory());
         });
 
 

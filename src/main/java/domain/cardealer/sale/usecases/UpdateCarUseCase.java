@@ -12,6 +12,9 @@ public class UpdateCarUseCase extends UseCase<RequestCommand<UpdateCar>, Respons
     @Override
     public void executeUseCase(RequestCommand<UpdateCar> updateCarRequestCommand) {
         var command = updateCarRequestCommand.getCommand();
-
+        var sale = Sale.from(command.getSaleId(), retrieveEvents());
+        sale.updateCar(command.getSaleId(),command.getPlate(),command.getCarModel(),
+                command.getCarPrice(), command.getCarColor(), command.getCategory());
+        emit().onResponse(new ResponseEvents(sale.getUncommittedChanges()));
     }
 }

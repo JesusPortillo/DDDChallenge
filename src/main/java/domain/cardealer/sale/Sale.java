@@ -47,14 +47,22 @@ public class Sale extends AggregateEvent<SaleId> {
         appendChange(new CarAdded(plate, carModel, carPrice, carColor, category)).apply();
     }
 
-    public void updateCar(Plate plate, CarModel carModel, CarPrice carPrice, CarColor carColor, Category category){
+    public void updateCar(SaleId saleId, Plate plate, CarModel carModel, CarPrice carPrice, CarColor carColor, Category category){
+        Objects.requireNonNull(saleId);
         Objects.requireNonNull(plate);
         Objects.requireNonNull(carModel);
         Objects.requireNonNull(carPrice);
         Objects.requireNonNull(carColor);
         Objects.requireNonNull(category);
-        appendChange(new CarUpdated(plate, carModel, carPrice, carColor, category)).apply();
+        appendChange(new CarUpdated(saleId, plate, carModel, carPrice, carColor, category)).apply();
     }
 
+    public Car getProductId(Plate plate) {
+        Objects.requireNonNull(plate);
+        return cars().stream().filter(car -> car.identity().equals(plate)).findFirst().orElseThrow();
+    }
 
+    public List<Car> cars() {
+        return cars;
+    }
 }
