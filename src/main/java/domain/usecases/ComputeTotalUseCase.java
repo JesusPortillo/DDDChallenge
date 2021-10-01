@@ -6,7 +6,6 @@ import co.com.sofka.business.support.TriggeredEvent;
 import domain.cardealer.sale.Sale;
 import domain.cardealer.sale.entities.Car;
 import domain.cardealer.sale.events.CarAdded;
-import domain.cardealer.sale.events.SaleCreated;
 import domain.cardealer.sale.values.SaleId;
 import domain.cardealer.sale.values.Total;
 
@@ -20,7 +19,7 @@ public class ComputeTotalUseCase extends UseCase<TriggeredEvent<CarAdded>, Respo
         Double totalAux = 0D;
         if (!sale.cars().isEmpty()){
             for (Car car: sale.cars()) {
-                totalAux += car.CarPrice().value();
+                totalAux += car.carPrice().value();
             }
         }
         sale.computeTotal(new Total(totalAux));

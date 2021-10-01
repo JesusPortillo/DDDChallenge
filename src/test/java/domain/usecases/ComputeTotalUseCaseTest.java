@@ -58,7 +58,7 @@ class ComputeTotalUseCaseTest {
                 new Category("deportivo")
 
         ),new CarAdded(
-                new Plate("121"),
+                new Plate("11"),
                 new CarModel("Ford"),
                 new CarPrice(123000000.0),
                 new CarColor("negro"),

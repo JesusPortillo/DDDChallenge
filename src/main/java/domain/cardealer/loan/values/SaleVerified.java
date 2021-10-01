@@ -1,4 +1,4 @@
-package domain.cardealer.sale.values;
+package domain.cardealer.loan.values;
 
 import co.com.sofka.domain.generic.ValueObject;
 

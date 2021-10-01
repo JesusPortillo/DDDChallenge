@@ -20,7 +20,6 @@ public class Sale extends AggregateEvent<SaleId> {
     protected List<Car> cars;
     protected Salesman salesman;
     protected Customer customer;
-    protected SaleVerified saleVerified;
     protected Total total;
 
     public Sale(SaleId entityId, SaleDate saleDate) {

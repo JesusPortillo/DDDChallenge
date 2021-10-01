@@ -21,42 +21,42 @@ public class Car extends Entity<Plate> {
         this.category = category;
     }
 
-    public CarModel CarModel() {
+    public CarModel carModel() {
         return carModel;
     }
 
-    public void setCarModel(CarModel carModel) {
+    public void updateCarModel(CarModel carModel) {
         this.carModel = carModel;
     }
 
-    public CarPrice CarPrice() {
+    public CarPrice carPrice() {
         return carPrice;
     }
 
-    public void setCarPrice(CarPrice carPrice) {
+    public void updateCarPrice(CarPrice carPrice) {
         this.carPrice = carPrice;
     }
 
-    public CarColor CarColor() {
+    public CarColor carColor() {
         return carColor;
     }
 
-    public void setCarColor(CarColor carColor) {
+    public void updateCarColor(CarColor carColor) {
         this.carColor = carColor;
     }
 
-    public Category Category() {
+    public Category category() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void updateCategory(Category category) {
         this.category = category;
     }
 
     public void updateCar(CarModel carModel, CarPrice carPrice, CarColor carColor, Category category){
-        setCarModel(carModel);
-        setCarPrice(carPrice);
-        setCarColor(carColor);
-        setCategory(category);
+        updateCarModel(carModel);
+        updateCarPrice(carPrice);
+        updateCarColor(carColor);
+        updateCategory(category);
     }
 }
