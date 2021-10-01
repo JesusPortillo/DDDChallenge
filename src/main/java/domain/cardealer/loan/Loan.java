@@ -14,9 +14,11 @@ import domain.cardealer.sale.Sale;
 import domain.cardealer.sale.SaleChange;
 import domain.cardealer.sale.events.CustomerAdded;
 import domain.cardealer.sale.events.CustomerUpdated;
+import domain.cardealer.sale.values.CarPrice;
 import domain.cardealer.sale.values.CustomerId;
 import domain.cardealer.sale.values.SaleId;
 import domain.cardealer.loan.values.SaleVerified;
+import domain.cardealer.sale.values.Total;
 
 import java.util.List;
 import java.util.Objects;
@@ -107,6 +109,10 @@ public class Loan extends AggregateEvent<LoanId> {
         appendChange(new TimeToPayExtended(loanId, timeToPay)).apply();
     }
 
+    public void computeFees(AmountToPayPerMonth amountToPayPerMonth){
+        Objects.requireNonNull(amountToPayPerMonth);
+        appendChange(new FeesComputed(amountToPayPerMonth)).apply();
+    }
     public void sendMessageByExtendTime(String message){
         appendChange(new MessageSended(message)).apply();
     }
