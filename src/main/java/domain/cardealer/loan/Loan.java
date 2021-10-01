@@ -101,4 +101,9 @@ public class Loan extends AggregateEvent<LoanId> {
         appendChange(new DebtorUpdated(loanId, debtorId, name, email, age)).apply();
     }
 
+    public void extendTimeToPay(LoanId loanId, TimeToPay timeToPay){
+        Objects.requireNonNull(timeToPay);
+        appendChange(new TimeToPayExtended(loanId, timeToPay)).apply();
+    }
+
 }

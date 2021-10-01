@@ -5,6 +5,7 @@ import domain.cardealer.loan.entities.CoSign;
 import domain.cardealer.loan.entities.Debtor;
 import domain.cardealer.loan.entities.Loaner;
 import domain.cardealer.loan.events.*;
+import domain.cardealer.loan.values.TimeToPay;
 
 public class LoanChange extends EventChange {
 
@@ -39,6 +40,10 @@ public class LoanChange extends EventChange {
 
         apply((DebtorUpdated event)->{
             loan.debtor = new Debtor(event.getDebtorId(), event.getName(), event.getEmail(), event.getAge());
+        });
+
+        apply((TimeToPayExtended event)->{
+            loan.timeToPay = new TimeToPay(event.getTimeToPay().value());
         });
     }
 }
