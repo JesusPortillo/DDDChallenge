@@ -39,8 +39,13 @@ public class Customer extends Entity<CustomerId> {
         return age;
     }
 
-    public void updateCustomer(Name name, Email email){
+    public void setAge(Age age) {
+        this.age = age;
+    }
+
+    public void updateCustomer(Name name, Email email, Age age){
         setName(name);
         setEmail(email);
+        setAge(age);
     }
 }

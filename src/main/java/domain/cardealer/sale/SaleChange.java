@@ -39,5 +39,9 @@ public class SaleChange extends EventChange {
         apply((CustomerAdded event) ->{
             sale.customer = new Customer(event.getCustomerId(), event.getName(), event.getEmail(), event.getAge());
         });
+
+        apply((CustomerUpdated event) ->{
+            sale.customer.updateCustomer(event.getName(), event.getEmail(), event.getAge());
+        });
     }
 }

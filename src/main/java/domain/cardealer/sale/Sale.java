@@ -83,6 +83,14 @@ public class Sale extends AggregateEvent<SaleId> {
         appendChange(new CustomerAdded(customerId, name, email, age)).apply();
     }
 
+    public void updateCustomer(SaleId saleId, CustomerId customerId, Name name, Email email, Age age){
+        Objects.requireNonNull(saleId);
+        Objects.requireNonNull(customerId);
+        Objects.requireNonNull(name);
+        Objects.requireNonNull(email);
+        Objects.requireNonNull(age);
+        appendChange(new CustomerUpdated(saleId, customerId, name, email, age)).apply();
+    }
 
     public Car getCarId(Plate plate) {
         Objects.requireNonNull(plate);
