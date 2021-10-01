@@ -8,6 +8,7 @@ import domain.cardealer.generics.Name;
 import domain.cardealer.loan.entities.CoSign;
 import domain.cardealer.loan.entities.Debtor;
 import domain.cardealer.loan.entities.Loaner;
+import domain.cardealer.loan.events.CoSignAdded;
 import domain.cardealer.loan.events.LoanCreated;
 import domain.cardealer.loan.events.LoanerAdded;
 import domain.cardealer.loan.events.LoanerUpdated;
@@ -67,6 +68,14 @@ public class Loan extends AggregateEvent<LoanId> {
         Objects.requireNonNull(email);
         Objects.requireNonNull(age);
         appendChange(new LoanerUpdated(loanId, loanerId, name, email, age)).apply();
+    }
+
+    public void addCoSign(CoSignId coSignId, Name name, Email email, Age age){
+        Objects.requireNonNull(coSignId);
+        Objects.requireNonNull(name);
+        Objects.requireNonNull(email);
+        Objects.requireNonNull(age);
+        appendChange(new CoSignAdded(coSignId, name, email, age)).apply();
     }
 
 }
