@@ -57,6 +57,7 @@ class UpdateLoanerUseCaseTest {
         Assertions.assertEquals("Ford",res.getName().value());
         Assertions.assertEquals("foraquiesta@mail.co",res.getEmail().value());
         Assertions.assertEquals("21",res.getAge().value());
+        Mockito.verify(repository).getEventsBy("121");
     }
 
     private List<DomainEvent> events(){
@@ -65,7 +66,8 @@ class UpdateLoanerUseCaseTest {
                         new TimeToPay("12"),
                         new LoanIsPaid(false),
                         new IsAprobed(false),
-                        new SaleVerified(false)),
+                        new SaleVerified(false),
+                        new AmountToPayPerMonth(0.0)),
                 new LoanerAdded(LoanerId.of("121"), new Name("Ford"), new Email("jeuswsnw@mail.co"),
                         new Age("negro")));
     }

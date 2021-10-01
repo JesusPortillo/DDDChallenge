@@ -11,16 +11,17 @@ public class CreateLoan extends Command {
     private final LoanIsPaid loanIsPaid;
     private final IsAprobed isAprobed;
     private final SaleVerified saleVerified;
-
+    private final AmountToPayPerMonth amountToPayPerMonth;
 
     public CreateLoan(LoanId loanId, LoanDate loanDate, TimeToPay timeToPay, LoanIsPaid loanIsPaid,
-                      IsAprobed isAprobed, SaleVerified saleVerified) {
+                      IsAprobed isAprobed, SaleVerified saleVerified, AmountToPayPerMonth amountToPayPerMonth) {
         this.loanId = loanId;
         this.loanDate = loanDate;
         this.timeToPay = timeToPay;
         this.loanIsPaid = loanIsPaid;
         this.isAprobed = isAprobed;
         this.saleVerified = saleVerified;
+        this.amountToPayPerMonth = amountToPayPerMonth;
     }
 
     public LoanId getLoanId() {
@@ -45,5 +46,9 @@ public class CreateLoan extends Command {
 
     public SaleVerified getSaleVerified() {
         return saleVerified;
+    }
+
+    public AmountToPayPerMonth getAmountToPayPerMonth() {
+        return amountToPayPerMonth;
     }
 }

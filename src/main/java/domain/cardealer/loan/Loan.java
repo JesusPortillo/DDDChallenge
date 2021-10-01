@@ -29,14 +29,15 @@ public class Loan extends AggregateEvent<LoanId> {
     protected LoanIsPaid loanIsPaid;
     protected IsAprobed isAprobed;
     protected SaleVerified saleVerified;
+    protected AmountToPayPerMonth amountToPayPerMonth;
     protected Loaner loaner;
     protected CoSign coSign;
     protected Debtor debtor;
 
     public Loan(LoanId entityId, LoanDate loanDate, TimeToPay timeToPay, LoanIsPaid loanIsPaid,
-                IsAprobed isAprobed, SaleVerified saleVerified) {
+                IsAprobed isAprobed, SaleVerified saleVerified, AmountToPayPerMonth amountToPayPerMonth) {
         super(entityId);
-        appendChange(new LoanCreated(loanDate, timeToPay, loanIsPaid, isAprobed, saleVerified)).apply();
+        appendChange(new LoanCreated(loanDate, timeToPay, loanIsPaid, isAprobed, saleVerified, amountToPayPerMonth)).apply();
     }
 
     private Loan(LoanId entityId){

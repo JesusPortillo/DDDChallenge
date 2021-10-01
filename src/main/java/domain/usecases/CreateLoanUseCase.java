@@ -12,7 +12,7 @@ public class CreateLoanUseCase extends UseCase<RequestCommand<CreateLoan>, Respo
         var command = createLoanRequestCommand.getCommand();
 
         var loan = new Loan(command.getLoanId(), command.getLoanDate(), command.getTimeToPay(), command.getLoanIsPaid(),
-                command.getIsAprobed(), command.getSaleVerified());
+                command.getIsAprobed(), command.getSaleVerified(), command.getAmountToPayPerMonth());
         emit().onResponse(new ResponseEvents(loan.getUncommittedChanges()));
     }
 }

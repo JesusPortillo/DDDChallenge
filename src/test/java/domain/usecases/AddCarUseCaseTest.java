@@ -28,7 +28,7 @@ class AddCarUseCaseTest {
     private DomainEventRepository repository;
 
     @Test
-    public void createCar(){
+    public void addCar(){
 
         // arrange
         var command = new AddCar(
@@ -54,10 +54,12 @@ class AddCarUseCaseTest {
         Assertions.assertEquals(123000000.0,res.getCarPrice().value());
         Assertions.assertEquals("negro",res.getCarColor().value());
         Assertions.assertEquals("deportivo",res.getCategory().value());
+        Mockito.verify(repository).getEventsBy("121");
 
     }
 
     private List<DomainEvent> events(){
         return List.of(new SaleCreated(new SaleDate()));
     }
+
 }

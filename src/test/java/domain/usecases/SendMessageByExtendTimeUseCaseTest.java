@@ -50,13 +50,17 @@ class SendMessageByExtendTimeUseCaseTest {
 
         Assertions.assertEquals("Se ha extendido el plazo para pagar su deuda a un plazo de 121 meses", messageSended.getMessage());
         Mockito.verify(repository).getEventsBy(aggregateId);
+
     }
+
+
     private List<DomainEvent> events(){
         return List.of(new LoanCreated(
                         new LoanDate(),
                         new TimeToPay("12"),
                         new LoanIsPaid(false),
                         new IsAprobed(false),
-                        new SaleVerified(false)));
+                        new SaleVerified(false),
+                        new AmountToPayPerMonth(0.0)));
     }
 }

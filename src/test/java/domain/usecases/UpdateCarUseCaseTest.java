@@ -52,6 +52,7 @@ class UpdateCarUseCaseTest {
         Assertions.assertEquals(123000000.0,res.getCarPrice().value());
         Assertions.assertEquals("negro",res.getCarColor().value());
         Assertions.assertEquals("deportivo",res.getCategory().value());
+        Mockito.verify(repository).getEventsBy("121");
 
     }
 

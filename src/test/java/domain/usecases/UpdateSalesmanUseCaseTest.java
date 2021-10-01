@@ -52,6 +52,7 @@ class UpdateSalesmanUseCaseTest {
         Assertions.assertEquals("Ford",res.getName().value());
         Assertions.assertEquals("foraquiesta@mail.co",res.getEmail().value());
         Assertions.assertEquals("12",res.getAge().value());
+        Mockito.verify(repository).getEventsBy("121");
     }
 
     private List<DomainEvent> events(){

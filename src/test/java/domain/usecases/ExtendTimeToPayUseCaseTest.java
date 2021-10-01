@@ -48,6 +48,7 @@ class ExtendTimeToPayUseCaseTest {
         //assert
         var res = (TimeToPayExtended)ev.get(0);
         Assertions.assertEquals("121",res.getTimeToPay().value());
+        Mockito.verify(repository).getEventsBy("121");
     }
 
     private List<DomainEvent> events(){
@@ -56,6 +57,7 @@ class ExtendTimeToPayUseCaseTest {
                         new TimeToPay("12"),
                         new LoanIsPaid(false),
                         new IsAprobed(false),
-                        new SaleVerified(false)));
+                        new SaleVerified(false),
+                        new AmountToPayPerMonth(0.0)));
     }
 }

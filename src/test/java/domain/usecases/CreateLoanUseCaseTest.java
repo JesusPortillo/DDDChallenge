@@ -30,7 +30,8 @@ class CreateLoanUseCaseTest {
                 new TimeToPay("12"),
                 new LoanIsPaid(false),
                 new IsAprobed(false),
-                new SaleVerified(false)
+                new SaleVerified(false),
+                new AmountToPayPerMonth(0.0)
         );
 
         var command = new CreateLoan(
@@ -39,8 +40,8 @@ class CreateLoanUseCaseTest {
                 new TimeToPay("12"),
                 new LoanIsPaid(false),
                 new IsAprobed(false),
-                new SaleVerified(false)
-
+                new SaleVerified(false),
+                new AmountToPayPerMonth(0.0)
         );
 
         var useCase = new CreateLoanUseCase();

@@ -45,10 +45,34 @@ class ComputeTotalUseCaseTest {
         //assert
         var computed = (TotalComputed)events.get(0);
         Assertions.assertEquals(246000000.0, computed.getTotal().value());
-
+        Mockito.verify(repository).getEventsBy(aggregateId);
 
     }
 
+    @Test
+    public void noComputeTotalEscenary(){
+        var aggregateId = "xx-xx";
+        var event = new CarAdded(new Plate("121"),
+                new CarModel("Ford"),
+                new CarPrice(123000000.0),
+                new CarColor("negro"),
+                new Category("deportivo"));
+        event.setAggregateRootId(aggregateId);
+        var computeTotalUseCase = new ComputeTotalUseCase();
+
+        Mockito.when(repository.getEventsBy(aggregateId)).thenReturn(eventsWithoutCars());
+        computeTotalUseCase.addRepository(repository);
+
+        //act
+
+        var events = UseCaseHandler.getInstance().setIdentifyExecutor(aggregateId)
+                .syncExecutor(computeTotalUseCase, new TriggeredEvent<>(event)).orElseThrow().getDomainEvents();
+        //assert
+        var computed = (TotalComputed)events.get(0);
+        Assertions.assertEquals(0.0, computed.getTotal().value());
+        Mockito.verify(repository).getEventsBy(aggregateId);
+
+    }
     private List<DomainEvent> events(){
         return List.of(new SaleCreated(new SaleDate()), new CarAdded(
                 new Plate("121"),
@@ -63,6 +87,9 @@ class ComputeTotalUseCaseTest {
                 new CarPrice(123000000.0),
                 new CarColor("negro"),
                 new Category("deportivo")));
+    }
+    private List<DomainEvent> eventsWithoutCars(){
+        return List.of(new SaleCreated(new SaleDate()));
     }
 
 }
