@@ -36,5 +36,9 @@ public class LoanChange extends EventChange {
         apply((DebtorAdded event)->{
             loan.debtor = new Debtor(event.getDebtorId(), event.getName(), event.getEmail(), event.getAge());
         });
+
+        apply((DebtorUpdated event)->{
+            loan.debtor = new Debtor(event.getDebtorId(), event.getName(), event.getEmail(), event.getAge());
+        });
     }
 }

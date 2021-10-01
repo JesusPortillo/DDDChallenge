@@ -92,4 +92,13 @@ public class Loan extends AggregateEvent<LoanId> {
         appendChange(new DebtorAdded(debtorId, name, email, age)).apply();
     }
 
+    public void updateDebtor(LoanId loanId, DebtorId debtorId, Name name, Email email, Age age){
+        Objects.requireNonNull(loanId);
+        Objects.requireNonNull(debtorId);
+        Objects.requireNonNull(name);
+        Objects.requireNonNull(email);
+        Objects.requireNonNull(age);
+        appendChange(new DebtorUpdated(loanId, debtorId, name, email, age)).apply();
+    }
+
 }
