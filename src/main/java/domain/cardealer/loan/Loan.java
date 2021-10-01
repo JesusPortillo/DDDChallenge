@@ -84,4 +84,12 @@ public class Loan extends AggregateEvent<LoanId> {
         appendChange(new CoSignUpdated(loanId, coSignId, name, email, age)).apply();
     }
 
+    public void addDebtor(DebtorId debtorId, Name name, Email email, Age age){
+        Objects.requireNonNull(debtorId);
+        Objects.requireNonNull(name);
+        Objects.requireNonNull(email);
+        Objects.requireNonNull(age);
+        appendChange(new DebtorAdded(debtorId, name, email, age)).apply();
+    }
+
 }

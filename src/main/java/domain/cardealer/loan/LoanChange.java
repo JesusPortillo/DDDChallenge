@@ -2,6 +2,7 @@ package domain.cardealer.loan;
 
 import co.com.sofka.domain.generic.EventChange;
 import domain.cardealer.loan.entities.CoSign;
+import domain.cardealer.loan.entities.Debtor;
 import domain.cardealer.loan.entities.Loaner;
 import domain.cardealer.loan.events.*;
 
@@ -30,6 +31,10 @@ public class LoanChange extends EventChange {
 
         apply((CoSignUpdated event)->{
             loan.coSign = new CoSign(event.getCoSignId(), event.getName(), event.getEmail(), event.getAge());
+        });
+
+        apply((DebtorAdded event)->{
+            loan.debtor = new Debtor(event.getDebtorId(), event.getName(), event.getEmail(), event.getAge());
         });
     }
 }
