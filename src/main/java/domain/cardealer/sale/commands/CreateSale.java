@@ -9,6 +9,7 @@ public class CreateSale extends Command {
     private final SaleId saleId;
     private final SaleDate saleDate;
 
+
     public CreateSale(SaleId saleId, SaleDate saleDate) {
         this.saleId = saleId;
         this.saleDate = saleDate;

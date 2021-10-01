@@ -97,6 +97,12 @@ public class Sale extends AggregateEvent<SaleId> {
         return cars().stream().filter(car -> car.identity().equals(plate)).findFirst().orElseThrow();
     }
 
+    public void computeTotal(Total total){
+        Objects.requireNonNull(total);
+
+        appendChange(new TotalComputed(total)).apply();
+    }
+
     public List<Car> cars() {
         return cars;
     }

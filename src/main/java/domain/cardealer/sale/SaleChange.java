@@ -5,6 +5,7 @@ import domain.cardealer.sale.entities.Car;
 import domain.cardealer.sale.entities.Customer;
 import domain.cardealer.sale.entities.Salesman;
 import domain.cardealer.sale.events.*;
+import domain.cardealer.sale.values.Total;
 
 import java.util.ArrayList;
 
@@ -42,6 +43,10 @@ public class SaleChange extends EventChange {
 
         apply((CustomerUpdated event) ->{
             sale.customer.updateCustomer(event.getName(), event.getEmail(), event.getAge());
+        });
+
+        apply((TotalComputed event)->{
+            sale.total = event.getTotal();
         });
     }
 }
