@@ -113,6 +113,12 @@ public class Loan extends AggregateEvent<LoanId> {
         Objects.requireNonNull(amountToPayPerMonth);
         appendChange(new FeesComputed(amountToPayPerMonth)).apply();
     }
+
+    public void approveLoan(IsAprobed isAprobed){
+        Objects.requireNonNull(isAprobed);
+        appendChange(new LoanApproved(isAprobed)).apply();
+    }
+
     public void sendMessageByExtendTime(String message){
         appendChange(new MessageSended(message)).apply();
     }
