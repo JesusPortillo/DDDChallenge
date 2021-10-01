@@ -9,7 +9,7 @@ public class LoanerId extends Identity {
         super(id);
     }
 
-    public static LoanId of(String id){
-        return new LoanId(id);
+    public static LoanerId of(String id){
+        return new LoanerId(id);
     }
 }

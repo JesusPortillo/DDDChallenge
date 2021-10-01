@@ -4,6 +4,7 @@ import co.com.sofka.domain.generic.EventChange;
 import domain.cardealer.loan.entities.Loaner;
 import domain.cardealer.loan.events.LoanCreated;
 import domain.cardealer.loan.events.LoanerAdded;
+import domain.cardealer.loan.events.LoanerUpdated;
 
 public class LoanChange extends EventChange {
 
@@ -17,6 +18,10 @@ public class LoanChange extends EventChange {
         });
 
         apply((LoanerAdded event)->{
+            loan.loaner = new Loaner(event.getLoanerId(), event.getName(), event.getEmail(), event.getAge());
+        });
+
+        apply((LoanerUpdated event)->{
             loan.loaner = new Loaner(event.getLoanerId(), event.getName(), event.getEmail(), event.getAge());
         });
     }

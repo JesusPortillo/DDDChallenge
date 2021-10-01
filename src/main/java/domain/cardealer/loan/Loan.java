@@ -10,6 +10,7 @@ import domain.cardealer.loan.entities.Debtor;
 import domain.cardealer.loan.entities.Loaner;
 import domain.cardealer.loan.events.LoanCreated;
 import domain.cardealer.loan.events.LoanerAdded;
+import domain.cardealer.loan.events.LoanerUpdated;
 import domain.cardealer.loan.values.*;
 import domain.cardealer.sale.Sale;
 import domain.cardealer.sale.SaleChange;
@@ -59,13 +60,13 @@ public class Loan extends AggregateEvent<LoanId> {
         appendChange(new LoanerAdded(loanerId, name, email, age)).apply();
     }
 
-    public void updateCustomer(SaleId saleId, CustomerId customerId, Name name, Email email, Age age){
-        Objects.requireNonNull(saleId);
-        Objects.requireNonNull(customerId);
+    public void updateLoaner(LoanId loanId, LoanerId loanerId, Name name, Email email, Age age){
+        Objects.requireNonNull(loanId);
+        Objects.requireNonNull(loanerId);
         Objects.requireNonNull(name);
         Objects.requireNonNull(email);
         Objects.requireNonNull(age);
-        appendChange(new CustomerUpdated(saleId, customerId, name, email, age)).apply();
+        appendChange(new LoanerUpdated(loanId, loanerId, name, email, age)).apply();
     }
 
 }
