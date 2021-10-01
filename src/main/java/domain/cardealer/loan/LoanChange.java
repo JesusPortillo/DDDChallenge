@@ -7,6 +7,7 @@ import domain.cardealer.loan.entities.Loaner;
 import domain.cardealer.loan.events.*;
 import domain.cardealer.loan.values.AmountToPayPerMonth;
 import domain.cardealer.loan.values.IsAprobed;
+import domain.cardealer.loan.values.SaleVerified;
 import domain.cardealer.loan.values.TimeToPay;
 
 import java.nio.DoubleBuffer;
@@ -56,6 +57,9 @@ public class LoanChange extends EventChange {
 
         apply((LoanApproved event)->{
             loan.isAprobed = new IsAprobed(event.getIsAprobed().value());
+            loan.saleVerified = new SaleVerified(event.getIsAprobed().value());
         });
+
+
     }
 }

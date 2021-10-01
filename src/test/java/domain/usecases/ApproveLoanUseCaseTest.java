@@ -39,7 +39,8 @@ class ApproveLoanUseCaseTest {
         // arrange
         var command = new ApproveLoan(
                 LoanId.of("121"),
-                new IsAprobed(true)
+                new IsAprobed(true),
+                new SaleVerified(true)
         );
         var approveLoanUseCase = new ApproveLoanUseCase();
         Mockito.when(repository.getEventsBy("121")).thenReturn(events());
@@ -52,6 +53,7 @@ class ApproveLoanUseCaseTest {
         //assert
         var res = (LoanApproved)ev.get(0);
         Assertions.assertEquals(true,res.getIsAprobed().value());
+        Assertions.assertEquals(true, res.getSaleVerified().value());
         Mockito.verify(repository).getEventsBy("121");
     }
 

@@ -11,7 +11,7 @@ public class ApproveLoanUseCase extends UseCase<RequestCommand<ApproveLoan>, Res
     public void executeUseCase(RequestCommand<ApproveLoan> approveLoanRequestCommand) {
         var command = approveLoanRequestCommand.getCommand();
         var loan = Loan.from(command.getLoanId(), retrieveEvents());
-        loan.approveLoan(command.getIsAprobed());
+        loan.approveLoan(command.getIsAprobed(), command.getSaleVerified());
         emit().onResponse(new ResponseEvents(loan.getUncommittedChanges()));
     }
 }
