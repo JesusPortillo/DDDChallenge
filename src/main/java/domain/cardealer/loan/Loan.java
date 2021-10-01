@@ -106,4 +106,7 @@ public class Loan extends AggregateEvent<LoanId> {
         appendChange(new TimeToPayExtended(loanId, timeToPay)).apply();
     }
 
+    public void sendMessageByExtendTime(String message){
+        appendChange(new MessageSended(message)).apply();
+    }
 }
